@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Sql {
-    Sql2o sql2o = new Sql2o("jdbc:h2:~/practica3", "sa", "");
+    Sql2o sql2o = new Sql2o("jdbc:h2:tcp://localhost/~/practica4", "sa", "");
     public void insertAdmin () throws ClassNotFoundException {
         Class.forName("org.h2.Driver");
         String insertQuery =
