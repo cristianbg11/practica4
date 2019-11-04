@@ -39,7 +39,7 @@ public class Main {
             usuario.nombre = request.queryParams("nombre");
             usuario.password = request.queryParams("password");
             usuario.administrador = Boolean.parseBoolean(request.queryParams("administrador"));
-            usuario.autor = Boolean.parseBoolean(request.queryParams("username"));
+            usuario.autor = Boolean.parseBoolean(request.queryParams("autor"));
             sql.insertUser(usuario);
             response.redirect("/");
             return "Usuario Creado";
@@ -105,11 +105,6 @@ public class Main {
             return renderContent("publico/login.html");
         });
 
-        get("/page", (request, response)-> {
-            //response.redirect("/login.html");
-            return renderContent("publico/page.html");
-        });
-
         get("/edita", (request, response)-> {
             Map<String, Object> attributes = new HashMap<>();
             Session session=request.session(true);
@@ -137,8 +132,8 @@ public class Main {
                 if (usuario.username.equals(username) && usuario.password.equals(password)){
                     session.attribute("usuario", usuario);
                     if (request.queryParams("recordatorio") !=null && request.queryParams("recordatorio").equals("si") ){
-                        Map<String, String> cookies=request.cookies();
-                        response.cookie("/", "CookieUsuario", String.valueOf(usuario.id), 604800, true);
+                        //Map<String, String> cookies=request.cookies();
+                        response.cookie("/", "CookieUsuario", String.valueOf(usuario.id), 604800, false);
                         /*
                         for (String key : cookies.keySet()) {
                             if (key != null) {
@@ -175,7 +170,6 @@ public class Main {
         } , new FreeMarkerEngine());
 
         get("/salir", (request, response)->{
-            //creando cookie en para un minuto
             Session session=request.session(true);
             session.invalidate();
             response.removeCookie("CookieUsuario");

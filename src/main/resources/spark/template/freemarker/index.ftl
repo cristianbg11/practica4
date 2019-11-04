@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Practica3</title>
+    <title>Practica4</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,11 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" href="assets/css/smoothproducts.css">
     <link rel="stylesheet" href="assets/css/Footer-Clean.css">
+    <link rel="stylesheet" href="css/jPages.css">
 </head>
 <body>
 
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-    <div class="container"><a class="navbar-brand logo" href="/index">Practica 3</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><a class="navbar-brand logo" href="/index">Practica 4</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse"
              id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
@@ -58,26 +59,17 @@
             <h2 class="text-center">Ultimos articulos</h2>
         </div>
         <div class="cont">
-            <div class="row articles pagination-container">
+            <div id="itemContainer" class="row articles">
                 <#if articulos?has_content>
                     <#list articulos as articulo>
-                        <div class="col-sm-6 col-md-4 item" data-page="${articulo?index+1}"><a href="#"></a>
+                        <div class="col-sm-6 col-md-4 item"><a href="#"></a>
                             <h3 class="name">${articulo.titulo}</h3>
                             <p class="description">${articulo.cuerpo[0..70]}</p><a class="action" href="/post?id_post=${articulo.id}"><i class="fa fa-arrow-circle-right"></i></a></div>
                     </#list>
                 </#if>
-                <div class="pagination pagination-centered">
-                    <ul class="pagination">
-                        <li data-page="-" class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&lt;</span></a></li>
-                        <li data-page="1" class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li data-page="2" class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li data-page="3" class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li data-page="4" class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li data-page="5" class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li data-page="+" class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&gt;</span></a></li>
-                    </ul>
-                </div>
             </div>
+        </div>
+        <div class="holder">
         </div>
     </div>
 </div>
@@ -90,6 +82,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 <script src="assets/js/smoothproducts.min.js"></script>
 <script src="assets/js/theme.js"></script>
-<script src="js/pagination.js"></script>
+<script src="js/jPages.js"></script>
+<script>
+    $(function(){
+        /* initiate the plugin */
+        $("div.holder").jPages({
+            containerID  : "itemContainer",
+            perPage      : 5,
+            startPage    : 1,
+            startRange   : 1,
+            midRange     : 5,
+            endRange     : 1
+        });
+    });
+</script>
 </body>
 </html>
