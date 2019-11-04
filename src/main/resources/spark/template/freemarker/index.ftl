@@ -57,30 +57,32 @@
         <div class="intro">
             <h2 class="text-center">Ultimos articulos</h2>
         </div>
-        <div class="row articles">
-            <#if articulos?has_content>
-                <#list articulos as articulo>
-                        <div class="col-sm-6 col-md-4 item"><a href="#"></a>
+        <div class="cont">
+            <div class="row articles pagination-container">
+                <#if articulos?has_content>
+                    <#list articulos as articulo>
+                        <div class="col-sm-6 col-md-4 item" data-page="${articulo?index+1}"><a href="#"></a>
                             <h3 class="name">${articulo.titulo}</h3>
                             <p class="description">${articulo.cuerpo[0..70]}</p><a class="action" href="/post?id_post=${articulo.id}"><i class="fa fa-arrow-circle-right"></i></a></div>
-                </#list>
-            </#if>
+                    </#list>
+                </#if>
+                <div class="pagination pagination-centered">
+                    <ul class="pagination">
+                        <li data-page="-" class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&lt;</span></a></li>
+                        <li data-page="1" class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li data-page="2" class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li data-page="3" class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li data-page="4" class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li data-page="5" class="page-item"><a class="page-link" href="#">5</a></li>
+                        <li data-page="+" class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&gt;</span></a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <div class="footer-clean">
     <footer>
-        <nav>
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true"><<</span></a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">>></span></a></li>
-            </ul>
-        </nav>
     </footer>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -88,5 +90,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
 <script src="assets/js/smoothproducts.min.js"></script>
 <script src="assets/js/theme.js"></script>
+<script src="js/pagination.js"></script>
 </body>
 </html>

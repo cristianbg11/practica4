@@ -75,3 +75,7 @@
 .dropdown-menu.show {
 }
 
+.page-active {
+  display: block;
+}
+
